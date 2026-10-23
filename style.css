@@ -270,3 +270,7 @@ footer .legal{grid-column:1/-1;margin-top:28px;padding-top:18px;border-top:1px s
 @media (max-width:860px){.hero-video .wrap{padding-block:80px 72px;min-height:0}.hero-video .veil{background:linear-gradient(180deg,rgba(11,26,46,.8),rgba(11,26,46,.9))}}
 .hero-video h1{font-size:clamp(40px,5.6vw,72px);max-width:16ch}
 .hero-video .veil{background:linear-gradient(90deg,rgba(11,26,46,.88) 0%,rgba(11,26,46,.66) 45%,rgba(11,26,46,.3) 100%),linear-gradient(180deg,rgba(11,26,46,.15),rgba(11,26,46,.7))}
+.hero-video .wrap{padding-block:88px 80px;min-height:520px}
+.hero-video h1{font-size:clamp(38px,5vw,64px)}
+.hero-video .bgv{object-position:center 45%}
+@media (min-width:1600px){.hero-video .wrap{min-height:560px}}
