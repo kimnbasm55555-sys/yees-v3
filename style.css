@@ -634,3 +634,9 @@ table.rates th small{font-size:10px;letter-spacing:.08em}
 .brand b{letter-spacing:.12em;font-weight:500}
 .route li+li{margin-top:0}
 .feat2+.small{margin-top:-24px}
+/* faculty name cards (no photo yet) */
+.people{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.person .ph2{background:#EEF1F5}
+.pnames{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 24px;margin-top:20px;border-top:1px solid var(--line)}
+.pname{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-bottom:1px solid var(--line)}
+.pname b{font-weight:600;font-size:16px}.pname span{font-size:13px;color:var(--muted)}
