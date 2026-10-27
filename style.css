@@ -640,3 +640,35 @@ table.rates th small{font-size:10px;letter-spacing:.08em}
 .pnames{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:0 24px;margin-top:20px;border-top:1px solid var(--line)}
 .pname{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-bottom:1px solid var(--line)}
 .pname b{font-weight:600;font-size:16px}.pname span{font-size:13px;color:var(--muted)}
+/* ===== 10-28c ===== */
+/* video 1/6 smaller, list directly below */
+.feat2{width:83.4%;margin:0 auto}
+.feat2+.vlist{width:83.4%;margin:-16px auto 0;border-top:0;padding-top:0}
+.vlist .vrows{max-height:330px;border-top:0}
+@media (max-width:900px){.feat2,.feat2+.vlist{width:100%}}
+/* logo + wordmark back to the earlier look */
+.brand img{width:44px;height:44px}
+.brand b{letter-spacing:.06em;font-weight:600}
+/* hero: weightier type, solemn motion */
+.hero-video h1{font-weight:600;letter-spacing:-.005em}
+.hero-video h1 em{font-weight:600}
+.hero-video .eyebrow{font-weight:700}
+.hero-video .meta b{font-weight:600}
+.hero-video .lede{font-weight:400}
+.hero-video .wrap{position:relative}
+.hero-video .wrap::before{content:"";display:block;width:88px;height:1px;background:#C9B48A;margin-bottom:22px;transform-origin:left;animation:rule 1.1s cubic-bezier(.6,0,.2,1) .15s both}
+@keyframes rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero-video h1 .ln{overflow:visible}
+.hero-video h1 .ln>span{animation:unveil 1.5s cubic-bezier(.65,0,.25,1) both}
+.hero-video h1 .ln:nth-child(1)>span{animation-delay:.55s}
+.hero-video h1 .ln:nth-child(2)>span{animation-delay:.85s}
+@keyframes unveil{from{clip-path:inset(0 100% 0 0);opacity:.2;letter-spacing:.04em}to{clip-path:inset(0 0 0 0);opacity:1;letter-spacing:-.005em}}
+.hero-video p.eyebrow{animation:fadein 1s ease .1s both}
+.hero-video .lede{animation:fadein 1.2s ease 1.5s both}
+.hero-video .meta{animation:fadein 1.2s ease 1.75s both}
+.hero-video .actions{animation:fadein 1.2s ease 2s both}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.hero-video .meta>div{padding-left:16px;border-left:1px solid rgba(201,180,138,.55)}
+.hero-video .meta>div:first-child{padding-left:0;border-left:0}
+@media (prefers-reduced-motion:reduce){.hero-video *{animation:none!important;clip-path:none!important}}
+.feat2{background:transparent}.feat2+.small,.vlist+.small{margin-top:0}
