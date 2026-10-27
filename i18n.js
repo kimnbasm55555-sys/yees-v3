@@ -5,27 +5,30 @@ var KO={
 "Korea":"대한민국","Yonsei Endoscopic Ear Surgery":"연세 내시경 귀수술","YEES & 4th ITFA 2027":"YEES 및 제4회 ITFA 2027","20th YEES & 4th ITFA":"제20회 YEES 및 제4회 ITFA","20th YEES & 4th ITFA 2027":"제20회 YEES 및 제4회 ITFA 2027","20th YEES 2027":"제20회 YEES 2027","19th YEES 2026":"제19회 YEES 2026","12–14 May 2027":"2027년 5월 12–14일","Registration":"등록","Workshop":"워크숍","Early":"사전등록","Standard":"일반등록","Program":"프로그램"
 };
 Object.assign(KO,{"Photo Gallery": "사진 갤러리", "Admin": "관리자", "Fax +82-70-8677-6333": "팩스 070-8677-6333", "Invited Faculty": "초청 연자", "All faculty →": "강사진 전체 →", "View photos →": "사진 보기 →", "Online payment": "온라인 결제", "K-ETA · e-Arrival Card": "K-ETA · 전자입국신고서", "Wed 12 May · Middle ear": "5월 12일(수) · 중이", "Thu 13 May · Facial nerve": "5월 13일(목) · 안면신경", "Fri 14 May · Skull base": "5월 14일(금) · 두개저", "Organizing committee": "조직위원회", "Course directors · 20th YEES 2027": "코스 디렉터 · 제20회 YEES 2027", "Chairman · Yonsei University": "위원장 · 연세대학교", "Course director · Yonsei University": "코스 디렉터 · 연세대학교", "Co-director · Yonsei University": "공동 디렉터 · 연세대학교", "General Information · Updated October 2026": "일반 안내 · 2026년 10월 기준", "Naver Map": "네이버 지도", "Google Maps": "구글 지도", "Administrator": "관리자", "Registrations": "등록 현황", "Administrator login": "관리자 로그인", "Password": "비밀번호", "Log in": "로그인", "Download CSV": "CSV 내려받기", "Clear preview data": "시연 데이터 지우기", "Wrong password.": "비밀번호가 틀렸습니다.", "Preview password: yees2027": "시연용 비밀번호: yees2027", "e-Arrival Card": "전자입국신고서", "Online arrival card": "온라인 입국신고", "Yonsei University · Korea": "연세대학교 · 대한민국", "University of Verona · Italy": "베로나 대학교 · 이탈리아", "Alexandria University · Egypt": "알렉산드리아 대학교 · 이집트", "Mount Sinai · USA": "마운트 시나이 · 미국", "Workshop": "워크숍", "Open workshop page": "워크숍 페이지 열기", "Register": "등록하기", "Online Registration": "온라인 등록", "Visa Information": "비자 안내", "VISA": "비자", "Program": "프로그램", "Travel Grants": "여행 지원금", "Past Workshops": "역대 워크숍", "Hotels": "호텔 안내", "Seoul Half-day Tour": "서울 반나절 투어", "Venue & Transport": "장소 및 교통", "Discover Seoul, Korea": "서울과 한국", "General Information": "일반 안내", "How to Register": "등록 안내", "Organizing Committee": "조직위원회", "Editions": "역대 행사", "Preview: registrations are stored in this browser only. In the live site they will be stored in a database and confirmed by the payment gateway.": "시연: 등록 내용은 이 브라우저에만 저장됩니다. 실제 사이트에서는 데이터베이스에 저장되고 PG사 결제 확인을 거칩니다.", "Registration no.": "등록번호", "Date": "일자", "Name": "성명", "Country": "국가", "Affiliation": "소속", "Category": "구분", "Amount": "금액", "Payment": "결제", "Status": "상태", "No.": "번호", "Paid": "결제", "Dissectors": "해부 실습"});
-var EN={}; for(var k in KO) EN[KO[k]]=k;
+Object.assign(KO,{"Faculty of YEES 2020": "YEES 2020 강사진", "Reservation form download": "예약 양식 내려받기", "Severance campus map": "세브란스 캠퍼스 지도", "More to see": "더 둘러보기", "Video · Feel the Rhythm of Seoul": "영상 · Feel the Rhythm of Seoul", "Korea Tourism Organization": "한국관광공사", "Hi Korea": "하이코리아", "Immigration and visa portal": "출입국·비자 포털", "Photos: Wikimedia Commons (CC BY-SA). To be replaced with licensed images before launch.": "사진: 위키미디어 공용(CC BY-SA). 공개 전 사용 허가된 이미지로 교체 예정.", "International faculty": "해외 강사진", "Korea": "대한민국"});
 var KEY='yees-lang';
-function lang(){try{return localStorage.getItem(KEY)||'en';}catch(e){return 'en';}}
-function walk(map){
-  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE)$/.test(p.nodeName))return NodeFilter.FILTER_REJECT;return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}});
+var DONE=[];
+function lang(){try{return sessionStorage.getItem(KEY)||'en';}catch(e){return 'en';}}
+function store(l){try{sessionStorage.setItem(KEY,l);}catch(e){}}
+function toKo(){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!p||/^(SCRIPT|STYLE)$/.test(p.nodeName))return NodeFilter.FILTER_REJECT;if(p.closest&&p.closest('.l-en,.l-ko'))return NodeFilter.FILTER_REJECT;return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP;}});
   var nodes=[];while(w.nextNode())nodes.push(w.currentNode);
-  nodes.forEach(function(n){var raw=n.nodeValue,s=raw.replace(/\s+/g,' ').trim();if(map[s]!==undefined){var lead=raw.match(/^\s*/)[0],trail=raw.match(/\s*$/)[0];n.nodeValue=lead+map[s]+trail;}});
+  nodes.forEach(function(n){if(n._en!==undefined)return;var raw=n.nodeValue,s=raw.replace(/\s+/g,' ').trim();if(KO[s]!==undefined){n._en=raw;DONE.push(n);n.nodeValue=raw.match(/^\s*/)[0]+KO[s]+raw.match(/\s*$/)[0];}});
 }
+function toEn(){DONE.forEach(function(n){if(n._en!==undefined){n.nodeValue=n._en;delete n._en;}});DONE=[];}
 function apply(l){
   var cur=document.documentElement.getAttribute('data-lang')||'en';
   if(cur===l)return;
-  walk(l==='ko'?KO:EN);
+  if(l==='ko')toKo();else toEn();
   document.documentElement.setAttribute('data-lang',l);document.documentElement.lang=l;
   document.querySelectorAll('.langsw button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false');});
 }
 function build(){
   var box=document.createElement('span');box.className='langsw';box.setAttribute('role','group');box.setAttribute('aria-label','Language');
   box.innerHTML='<button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ko" aria-pressed="false">한국어</button>';
-  box.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;try{localStorage.setItem(KEY,b.dataset.lang);}catch(x){}apply(b.dataset.lang);});
-  var nav=document.querySelector('.nav .wrap');if(nav){var btn=nav.querySelector('.btn');nav.insertBefore(box,btn);}
-  var legal=document.querySelector('footer .legal');if(legal){var old=legal.lastElementChild;if(old&&/한국어/.test(old.textContent))old.replaceWith(box.cloneNode(true));legal.lastElementChild.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;try{localStorage.setItem(KEY,b.dataset.lang);}catch(x){}apply(b.dataset.lang);});}
+  box.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;store(b.dataset.lang);apply(b.dataset.lang);});
+  var tl=document.querySelector('.topbar .tl');if(tl){tl.appendChild(box);}
+  var legal=document.querySelector('footer .legal');if(legal){var old=legal.lastElementChild;if(old&&/한국어/.test(old.textContent))old.replaceWith(box.cloneNode(true));legal.lastElementChild.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;store(b.dataset.lang);apply(b.dataset.lang);});}
 }
 document.addEventListener('DOMContentLoaded',function(){build();apply(lang());});
 })();
