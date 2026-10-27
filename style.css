@@ -677,3 +677,8 @@ table.rates th small{font-size:10px;letter-spacing:.08em}
 .brand b{font-weight:700;letter-spacing:.05em}
 @media (max-width:860px){.brand img{width:40px;height:40px}}
 .brand b{-webkit-text-stroke:.55px currentColor;paint-order:stroke fill}
+/* wordmark sized to the logo */
+.brand{gap:12px;align-items:center}
+.brand b{font-size:40px;line-height:1}
+.brand .t{justify-content:center}
+@media (max-width:860px){.brand b{font-size:32px}}
