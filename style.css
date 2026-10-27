@@ -672,3 +672,8 @@ table.rates th small{font-size:10px;letter-spacing:.08em}
 .hero-video .meta>div:first-child{padding-left:0;border-left:0}
 @media (prefers-reduced-motion:reduce){.hero-video *{animation:none!important;clip-path:none!important}}
 .feat2{background:transparent}.feat2+.small,.vlist+.small{margin-top:0}
+/* logo slightly larger, wordmark bolder */
+.brand img{width:50px;height:50px}
+.brand b{font-weight:700;letter-spacing:.05em}
+@media (max-width:860px){.brand img{width:40px;height:40px}}
+.brand b{-webkit-text-stroke:.55px currentColor;paint-order:stroke fill}
