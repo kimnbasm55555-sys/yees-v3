@@ -322,3 +322,18 @@ footer .legal{grid-column:1/-1;margin-top:28px;padding-top:18px;border-top:1px s
   .pop-box{padding:22px}
   .pop-head h2{font-size:26px}
 }
+/* language switch */
+.langsw{display:inline-flex;border:1px solid var(--line);background:var(--paper);margin-left:8px}
+.langsw button{border:0;background:transparent;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.04em;padding:8px 12px;cursor:pointer;color:var(--muted);min-height:36px}
+.langsw button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.langsw button:hover{color:var(--navy)}.langsw button[aria-pressed="true"]:hover{color:#fff}
+footer .langsw{border-color:rgba(255,255,255,.25);background:transparent}
+footer .langsw button{color:#8FA2C0}footer .langsw button[aria-pressed="true"]{background:#fff;color:var(--navy)}
+@media (max-width:860px){.nav .wrap{gap:8px}.langsw{margin-left:auto}.langsw button{padding:6px 9px;font-size:12px;min-height:32px}.nav .btn{margin-left:0}}
+/* Korean typography */
+html[data-lang="ko"]{--serif:"Noto Serif KR","Cormorant Garamond",serif;--sans:"Noto Sans KR","Source Sans 3",sans-serif}
+html[data-lang="ko"] h1,html[data-lang="ko"] h2,html[data-lang="ko"] h3{letter-spacing:-.02em;word-break:keep-all}
+html[data-lang="ko"] em{font-style:normal;color:#C9B48A}
+html[data-lang="ko"] .hero-video h1{font-size:clamp(34px,4vw,54px);line-height:1.18}
+html[data-lang="ko"] body,html[data-lang="ko"] p{word-break:keep-all}
+html[data-lang="ko"] .brand small{font-size:12px;letter-spacing:.06em}
